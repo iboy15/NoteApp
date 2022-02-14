@@ -15,18 +15,19 @@ export interface MainContextInterface {
   needRefreshAll: boolean
   needRefreshFavorite: boolean
   needRefreshArchive: boolean
-  setIsNeedRefreshAll: ((fields:boolean) => void) | null
-  setIsNeedRefreshFavorite: ((fields:boolean) => void) | null
-  setIsNeedRefreshArchive: ((fields:boolean) => void) | null
-  getData: (() => Promise<void>) | null
-  onEdit: ((fields:editFields) => Promise<void>) | null
-  onSave: ((fields:saveFields) => Promise<void>) | null
-  onDelete: ((fields : deleteFields) => Promise<void>) | null
-  setAsFavorite: ((fields: favoriteFields) => Promise<void>) | null
+  setIsNeedRefreshAll: ((fields:boolean) => void) 
+  setIsNeedRefreshFavorite: ((fields:boolean) => void) 
+  setIsNeedRefreshArchive: ((fields:boolean) => void) 
+  getData: (() => Promise<void>) 
+  onEdit: ((fields:editFields) => Promise<void>) 
+  onSave: ((fields:saveFields) => Promise<void>) 
+  onDelete: ((fields : deleteFields) => Promise<void>) 
+  setAsFavorite: ((fields: favoriteFields) => Promise<void>) 
 }
 
 type favoriteFields = {
-  index: number
+  id: string
+  status:boolean
 }
 
 type deleteFields = {
@@ -55,9 +56,9 @@ export const MainContexts = createContext<MainContextInterface>({
   needRefreshAll: false,
   needRefreshFavorite: false,
   needRefreshArchive: false,
-  setIsNeedRefreshAll: null,
-  setIsNeedRefreshFavorite: null,
-  setIsNeedRefreshArchive: null,
+  setIsNeedRefreshAll:  ()  => {},
+  setIsNeedRefreshFavorite:()  => {},
+  setIsNeedRefreshArchive: ()  => {},
   getData: async()  => {},
   onEdit:  async() => {},
   onSave:  async() => {},
@@ -112,12 +113,14 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
   }
 
   //SET AS FAVORITE
-  const setAsFavorite = async (index: favoriteFields) => {
+  const setAsFavorite = async ({id,status}: favoriteFields) => {
     setIsNeedRefreshFavorite(true)
     setIsNeedRefreshAll(true)
     const arr = notesData
-    arr[index].is_favorite = !notesData[index].is_favorite
-    await AsyncStorage.setItem('data', JSON.stringify(arr))
+    const newData = arr.map(obj =>
+      obj.id === id ? { ...obj, is_favorite: !status } : obj
+  );
+    await AsyncStorage.setItem('data', JSON.stringify(newData))
     getData()
   }
 

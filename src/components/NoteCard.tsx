@@ -5,7 +5,16 @@ import { getParsedDate, height, width } from '../utils'
 import { FontAwesome } from '@expo/vector-icons'
 import useColorScheme from '../hooks/useColorScheme'
 
-export default function NoteCard({
+const NoteCard: React.FC<{
+  onPress: Function
+  body: string
+  title: string
+  color: string
+  created_at: string
+  is_favorite: boolean
+  setAsFavorite: Function
+  archived: boolean
+}> = ({
   onPress,
   body,
   title,
@@ -14,7 +23,7 @@ export default function NoteCard({
   is_favorite,
   setAsFavorite,
   archived,
-}) {
+}) => {
   const colorScheme = useColorScheme()
 
   return (
@@ -27,11 +36,10 @@ export default function NoteCard({
         {body}
       </Text>
       <View style={styles.bottomContainer}>
+        <Text style={{ fontStyle: 'italic', top: 7 }}>
+          {getParsedDate(created_at)} {'\n'}
+        </Text>
 
-          <Text style={{ fontStyle: 'italic',top:7 }}>
-            {getParsedDate(created_at)} {'\n'}
-          </Text>
-    
         <TouchableOpacity
           onPress={setAsFavorite}
           style={[
@@ -53,21 +61,25 @@ export default function NoteCard({
             }
           />
         </TouchableOpacity>
-        
       </View>
-      {  archived &&  <View style={{flexDirection:'row',backgroundColor:'transparent',alignItems:'center'}}>
-      <FontAwesome
+      {archived && (
+        <View
+          style={{
+            flexDirection: 'row',
+            backgroundColor: 'transparent',
+            alignItems: 'center',
+          }}
+        >
+          <FontAwesome
             name='trash'
             size={15}
-            color={
-              colorScheme === 'dark'
-                ? 'white'
-                : 'black'
-            }
+            color={colorScheme === 'dark' ? 'white' : 'black'}
           />
-             <Text style={{ fontWeight: 'bold',fontSize:14,marginLeft:5}}>Archived</Text>
-      </View>}
-  
+          <Text style={{ fontWeight: 'bold', fontSize: 14, marginLeft: 5 }}>
+            Archived
+          </Text>
+        </View>
+      )}
     </TouchableOpacity>
   )
 }
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'transparent',
     marginTop: 'auto',
-    alignItems:'center',
+    alignItems: 'center',
   },
   favoriteBtn: {
     height: 28,
@@ -103,3 +115,5 @@ const styles = StyleSheet.create({
   },
   body: { marginBottom: 10 },
 })
+
+export default NoteCard

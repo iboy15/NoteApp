@@ -60,8 +60,11 @@ export default function Notes({ navigation }: RootTabScreenProps<'Notes'>) {
                   created_at={item.created_at}
                   is_favorite={item.is_favorite}
                   color={color}
-                  setAsFavorite={() => setAsFavorite(index)}
+                  setAsFavorite={() =>
+                    setAsFavorite({ id: item.id, status: item.is_favorite })
+                  }
                   archived={item.is_archived}
+                  
                 />
               )
           }}

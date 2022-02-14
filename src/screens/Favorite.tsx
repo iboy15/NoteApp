@@ -1,29 +1,32 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-} from 'react-native'
-import {  View } from '../components/Themed'
-import {  RootTabScreenProps } from '../../types'
+import { ActivityIndicator, FlatList, StyleSheet } from 'react-native'
+import { View } from '../components/Themed'
+import { RootTabScreenProps } from '../../types'
 import { getColor, width } from '../utils'
 import useColorScheme from '../hooks/useColorScheme'
-import {useMain} from '../hooks/useMain'
+import { useMain } from '../hooks/useMain'
 import NoteCard from '../components/NoteCard'
 import { useFocusEffect } from '@react-navigation/native'
 import { useCallback, useEffect } from 'react'
 
 export default function Favorite({ navigation }: RootTabScreenProps<'Notes'>) {
   const colorScheme = useColorScheme()
-  const { getData, favoriteData, loading, setAsFavorite,needRefreshFavorite,setIsNeedRefreshFavorite } = useMain()
+  const {
+    getData,
+    favoriteData,
+    loading,
+    setAsFavorite,
+    needRefreshFavorite,
+    setIsNeedRefreshFavorite,
+  } = useMain()
 
   useFocusEffect(
     useCallback(() => {
-      if(needRefreshFavorite){
+      if (needRefreshFavorite) {
         getData()
         setIsNeedRefreshFavorite(false)
       }
     }, [needRefreshFavorite])
-  ) 
+  )
 
   return (
     <View style={styles.container}>
@@ -31,8 +34,8 @@ export default function Favorite({ navigation }: RootTabScreenProps<'Notes'>) {
         <ActivityIndicator size='large' />
       ) : (
         <FlatList
-          contentContainerStyle={{alignItems:'flex-start'}}
-          style={{ width: '95%', }}
+          contentContainerStyle={{ alignItems: 'flex-start' }}
+          style={{ width: '95%' }}
           onRefresh={getData}
           refreshing={loading}
           keyExtractor={(i, index) => index.toString()}
@@ -41,23 +44,25 @@ export default function Favorite({ navigation }: RootTabScreenProps<'Notes'>) {
           data={favoriteData}
           renderItem={({ item, index }) => {
             const color = getColor(colorScheme)
-              return (
-                <NoteCard
-                  onPress={() =>
-                    navigation.navigate('ModalDetail', {
-                      ...item,
-                      color,
-                      index,
-                    })
-                  }
-                  title={item.title}
-                  body={item.body}
-                  created_at={item.created_at}
-                  is_favorite={item.is_favorite}
-                  color={color}
-                  setAsFavorite={()=>setAsFavorite(index)}
-                />
-              )
+            return (
+              <NoteCard
+                onPress={() =>
+                  navigation.navigate('ModalDetail', {
+                    ...item,
+                    color,
+                    index,
+                  })
+                }
+                title={item.title}
+                body={item.body}
+                created_at={item.created_at}
+                is_favorite={item.is_favorite}
+                color={color}
+                setAsFavorite={() =>
+                  setAsFavorite({ id: item.id, status: item.is_favorite })
+                }
+              />
+            )
           }}
         />
       )}
