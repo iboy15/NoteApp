@@ -1,4 +1,4 @@
-This project was bootstrapped with [Expo init](https://docs.expo.dev/get-started/create-a-new-app/).
+This project was bootstrapped with [Expo](https://docs.expo.dev/get-started/create-a-new-app/).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
