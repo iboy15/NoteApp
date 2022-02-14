@@ -7,6 +7,7 @@ import { Text } from '../components/Themed'
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 import {useMain} from '../hooks/useMain'
+import { getParsedDate } from '../utils'
 
 export
 
@@ -49,6 +50,17 @@ const NoteDetail = () => {
         value={body}
         onChangeText={setBody}
       />
+      {props.updated_at &&
+        <Text style={{ fontStyle: 'italic',marginLeft:10 }}>
+        Last edited : {getParsedDate(props.updated_at)}
+       </Text>
+        }
+
+      {props.is_archived &&
+        <Text style={{ fontWeight:'bold',marginLeft:10 }}>
+          Archived
+        </Text>
+      }
       <View style={styles.saveContainer}>
         {editable ? (
           <TouchableOpacity
@@ -65,9 +77,7 @@ const NoteDetail = () => {
         ) : (
           <View />
         )}
-        {props.updated_at &&
-        <Text style={{marginTop:20}}>{props.updated_at}</Text>
-        }
+      
         <View
           style={[
             styles.rightMenuContainer,

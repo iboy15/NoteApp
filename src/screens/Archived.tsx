@@ -56,6 +56,7 @@ export default function Archived({ navigation }: RootTabScreenProps<'Notes'>) {
                   is_favorite={item.is_favorite}
                   color={color}
                   setAsFavorite={()=>setAsFavorite(index)}
+                  archived={item.is_archived}
                 />
               )
           }}

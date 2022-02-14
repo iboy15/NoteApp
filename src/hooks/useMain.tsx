@@ -93,10 +93,7 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
       setLoading(true)
       const storedData = await AsyncStorage.getItem('data')
       const data  =JSON.parse(storedData)
-
-      const filteredData = data?.length !=0 ?
-      data.filter(item => !item.is_archived) :[]
-      setData(filteredData)
+      setData(data)
 
       //filter favorite data
       const filteredFavoriteData = data?.length !=0 ?

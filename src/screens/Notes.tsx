@@ -46,7 +46,6 @@ export default function Notes({ navigation }: RootTabScreenProps<'Notes'>) {
           data={notesData}
           renderItem={({ item, index }) => {
             const color = getColor(colorScheme)
-            if (!item.is_archived)
               return (
                 <NoteCard
                   onPress={() =>
@@ -62,6 +61,7 @@ export default function Notes({ navigation }: RootTabScreenProps<'Notes'>) {
                   is_favorite={item.is_favorite}
                   color={color}
                   setAsFavorite={() => setAsFavorite(index)}
+                  archived={item.is_archived}
                 />
               )
           }}

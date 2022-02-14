@@ -13,6 +13,7 @@ export default function NoteCard({
   created_at,
   is_favorite,
   setAsFavorite,
+  archived,
 }) {
   const colorScheme = useColorScheme()
 
@@ -26,9 +27,11 @@ export default function NoteCard({
         {body}
       </Text>
       <View style={styles.bottomContainer}>
-        <Text style={{ fontStyle: 'italic' }}>
-          {getParsedDate(created_at)}
-        </Text>
+
+          <Text style={{ fontStyle: 'italic',top:7 }}>
+            {getParsedDate(created_at)} {'\n'}
+          </Text>
+    
         <TouchableOpacity
           onPress={setAsFavorite}
           style={[
@@ -50,7 +53,21 @@ export default function NoteCard({
             }
           />
         </TouchableOpacity>
+        
       </View>
+      {  archived &&  <View style={{flexDirection:'row',backgroundColor:'transparent',alignItems:'center'}}>
+      <FontAwesome
+            name='trash'
+            size={15}
+            color={
+              colorScheme === 'dark'
+                ? 'white'
+                : 'black'
+            }
+          />
+             <Text style={{ fontWeight: 'bold',fontSize:14,marginLeft:5}}>Archived</Text>
+      </View>}
+  
     </TouchableOpacity>
   )
 }
@@ -73,12 +90,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'transparent',
     marginTop: 'auto',
+    alignItems:'center',
   },
   favoriteBtn: {
     height: 28,
     width: 28,
     borderRadius: 19,
-
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 'auto',
