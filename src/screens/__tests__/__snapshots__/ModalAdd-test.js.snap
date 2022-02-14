@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+      },
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "overflow": "hidden",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+        },
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#2f95dc",
+          "height": 50,
+          "justifyContent": "center",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.8)",
+          },
+          Object {
+            "fontSize": 18,
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      Edit
+    </Text>
+  </View>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Title"
+    placeholderTextColor="#000"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "color": "#000",
+        "height": 40,
+        "marginTop": 20,
+        "paddingHorizontal": 10,
+        "width": "90%",
+      }
+    }
+    underlineColorAndroid="transparent"
+    value="Where does it come from?"
+  />
+  <TextInput
+    allowFontScaling={true}
+    multiline={true}
+    onChangeText={[Function]}
+    placeholder="Write something..."
+    placeholderTextColor="#000"
+    rejectResponderTermination={true}
+    scrollEnabled={true}
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "color": "#000",
+        "height": 444.6666666666667,
+        "marginTop": 20,
+        "paddingHorizontal": 10,
+        "paddingVertical": 20,
+        "width": 710,
+      }
+    }
+    textAlignVertical="top"
+    underlineColorAndroid="transparent"
+    value="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \\"de Finibus Bonorum et Malorum\\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \\"Lorem ipsum dolor sit amet..\\", comes from a line in section 1.10.32."
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+        },
+        Object {
+          "alignItems": "center",
+          "alignSelf": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <RCTSwitch
+      accessibilityRole="switch"
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onTintColor="#81b0ff"
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Array [
+            Object {
+              "marginLeft": 20,
+              "marginTop": 20,
+            },
+            Object {
+              "backgroundColor": "#3e3e3e",
+              "borderRadius": 16,
+            },
+          ],
+        ]
+      }
+      thumbTintColor="#f4f3f4"
+      tintColor="#767577"
+      value={false}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000",
+          },
+          Object {
+            "marginLeft": 10,
+            "marginTop": 15,
+          },
+        ]
+      }
+    >
+      Set as Favorite
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#2f95dc",
+        "borderRadius": 10,
+        "marginTop": 10,
+        "opacity": 1,
+        "paddingHorizontal": 40,
+        "paddingVertical": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000",
+          },
+          Object {
+            "fontSize": 18,
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      Save
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "overflow": "hidden",
+        "position": "absolute",
+        "right": 0,
+        "zIndex": 9999,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#484848",
+          "bottom": -9999,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {},
+            Object {
+              "flex": 1,
+              "fontSize": 14,
+              "paddingBottom": 14,
+              "paddingStart": 20,
+              "paddingTop": 14,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#FFFFFF",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {},
+              Object {
+                "fontSize": 14,
+                "fontWeight": "600",
+                "paddingBottom": 14,
+                "paddingEnd": 20,
+                "paddingTop": 14,
+              },
+              Object {
+                "color": "orange",
+              },
+            ]
+          }
+        >
+          OK
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

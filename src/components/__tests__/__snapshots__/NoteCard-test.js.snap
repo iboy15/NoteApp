@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "red",
+      "borderRadius": 10,
+      "margin": 10,
+      "opacity": 1,
+      "overflow": "hidden",
+      "padding": 10,
+      "width": 345,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000",
+        },
+        Object {
+          "fontWeight": "bold",
+          "marginBottom": 5,
+        },
+      ]
+    }
+  >
+    test
+  </Text>
+  <Text
+    numberOfLines={6}
+    style={
+      Array [
+        Object {
+          "color": "#000",
+        },
+        Object {
+          "marginBottom": 10,
+        },
+      ]
+    }
+  >
+    test
+  </Text>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+        },
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "marginTop": "auto",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000",
+          },
+          Object {
+            "fontStyle": "italic",
+            "top": 7,
+          },
+        ]
+      }
+    >
+      NaN-NaN-NaN
+       
+      
+
+    </Text>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 19,
+          "height": 28,
+          "justifyContent": "center",
+          "marginLeft": "auto",
+          "opacity": 1,
+          "paddingLeft": 1,
+          "width": 28,
+        }
+      }
+    >
+      <Text />
+    </View>
+  </View>
+</View>
+`;
