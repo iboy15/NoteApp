@@ -46,3 +46,15 @@ export type NoteData ={
   is_favorite :boolean;
   updated_at :string | Date;
 }
+
+export type NoteEdit ={
+  title : string;
+  index :number;
+  color:string;
+  body : string;
+  created_at : string;
+  is_archived :boolean;
+  id:string;
+  is_favorite :boolean;
+  updated_at :string | Date;
+}

@@ -2,28 +2,31 @@ import { AntDesign } from '@expo/vector-icons'
 import { useRoute } from '@react-navigation/native'
 import { useState } from 'react'
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { NoteEdit } from '../../types'
 import { Text } from '../components/Themed'
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 import {useMain} from '../hooks/useMain'
 
+export
+
 const NoteDetail = () => {
-  const { params } = useRoute()
+  const props: NoteEdit = useRoute().params as NoteEdit;
   const colorScheme = useColorScheme()
   const [editable, setEditable] = useState(false)
-  const [title, setTitle] = useState<string>(params.title || '')
-  const [body, setBody] = useState<string>(params.body || '')
+  const [title, setTitle] = useState<string>(props.title || '')
+  const [body, setBody] = useState<string>(props.body || '')
   const { onEdit, onDelete } = useMain()
 
   return (
-    <View style={{ flex: 1, backgroundColor: params.color, padding: 20 }}>
+    <View style={{ flex: 1, backgroundColor: props.color, padding: 20 }}>
       <TextInput
         editable={editable}
         style={[
           styles.title,
           {
             color: Colors[colorScheme].text,
-            borderColor: editable ? Colors[colorScheme].text : params.color,
+            borderColor: editable ? Colors[colorScheme].text : props.color,
           },
         ]}
         value={title}
@@ -40,7 +43,7 @@ const NoteDetail = () => {
           styles.body,
           {
             color: Colors[colorScheme].text,
-            borderColor: editable ? Colors[colorScheme].text : params.color,
+            borderColor: editable ? Colors[colorScheme].text : props.color,
           },
         ]}
         value={body}
@@ -49,7 +52,7 @@ const NoteDetail = () => {
       <View style={styles.saveContainer}>
         {editable ? (
           <TouchableOpacity
-            onPress={() => onEdit(title, body, params.index)}
+            onPress={() => onEdit({title, body, index: props.index})}
             style={[
               styles.saveBtn,
               {
@@ -62,6 +65,9 @@ const NoteDetail = () => {
         ) : (
           <View />
         )}
+        {props.updated_at &&
+        <Text style={{marginTop:20}}>{props.updated_at}</Text>
+        }
         <View
           style={[
             styles.rightMenuContainer,
@@ -93,7 +99,7 @@ const NoteDetail = () => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => onDelete(params.index)}
+            onPress={() => onDelete(props.index)}
             style={{ alignItems: 'center' }}
           >
             <AntDesign

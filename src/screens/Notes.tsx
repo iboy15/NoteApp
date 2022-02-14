@@ -28,8 +28,7 @@ export default function Notes({ navigation }: RootTabScreenProps<'Notes'>) {
     }, [needRefreshAll])
   )
 
-  const filteredData = notesData?.length !=0 ?
-  notesData.filter(item => !item.is_archived) :[]
+  //next task make data for each
 
   return (
     <View style={styles.container}>
@@ -44,7 +43,7 @@ export default function Notes({ navigation }: RootTabScreenProps<'Notes'>) {
           keyExtractor={(i, index) => index.toString()}
           numColumns={2}
           horizontal={false}
-          data={filteredData}
+          data={notesData}
           renderItem={({ item, index }) => {
             const color = getColor(colorScheme)
             if (!item.is_archived)

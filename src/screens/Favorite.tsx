@@ -14,21 +14,16 @@ import { useCallback, useEffect } from 'react'
 
 export default function Favorite({ navigation }: RootTabScreenProps<'Notes'>) {
   const colorScheme = useColorScheme()
-  const { getData, notesData, loading, setAsFavorite,needRefreshFavorite,setIsNeedRefreshFavorite } = useMain()
+  const { getData, favoriteData, loading, setAsFavorite,needRefreshFavorite,setIsNeedRefreshFavorite } = useMain()
 
   useFocusEffect(
     useCallback(() => {
-    console.log('needRefreshFavorite', needRefreshFavorite)
       if(needRefreshFavorite){
         getData()
         setIsNeedRefreshFavorite(false)
       }
     }, [needRefreshFavorite])
   ) 
-
-  const filteredData = notesData?.length !=0 ?
-  notesData.filter(item => !item.is_archived && item.is_favorite) :[]
-
 
   return (
     <View style={styles.container}>
@@ -43,7 +38,7 @@ export default function Favorite({ navigation }: RootTabScreenProps<'Notes'>) {
           keyExtractor={(i, index) => index.toString()}
           numColumns={2}
           horizontal={false}
-          data={filteredData}
+          data={favoriteData}
           renderItem={({ item, index }) => {
             const color = getColor(colorScheme)
               return (

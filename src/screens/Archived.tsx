@@ -14,7 +14,7 @@ import { useCallback } from 'react'
 
 export default function Archived({ navigation }: RootTabScreenProps<'Notes'>) {
   const colorScheme = useColorScheme()
-  const { getData, notesData, loading, setAsFavorite,needRefreshArchive,setIsNeedRefreshArchive } = useMain()
+  const { getData, archiveData, loading, setAsFavorite,needRefreshArchive,setIsNeedRefreshArchive } = useMain()
 
   useFocusEffect(
     useCallback(() => {
@@ -24,9 +24,6 @@ export default function Archived({ navigation }: RootTabScreenProps<'Notes'>) {
       }
     }, [])
   )
-
-  const filteredData = notesData?.length !=0 ?
-  notesData.filter(item => item.is_archived ) :[]
 
   return (
     <View style={styles.container}>
@@ -40,7 +37,7 @@ export default function Archived({ navigation }: RootTabScreenProps<'Notes'>) {
           refreshing={loading}
           keyExtractor={(i, index) => index.toString()}
           numColumns={2}
-          data={filteredData}
+          data={archiveData}
           renderItem={({ item, index }) => {
             const color = getColor(colorScheme)
             if (item.is_archived)

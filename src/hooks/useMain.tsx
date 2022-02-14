@@ -7,6 +7,8 @@ import { generateUUID } from '../utils'
 
 export interface MainContextInterface {
   notesData: NoteData[]
+  favoriteData: NoteData[]
+  archiveData: NoteData[]
   loading: boolean
   snackbarText: string
   showSnackbar: boolean
@@ -38,13 +40,15 @@ type saveFields = {
 }
 
 type editFields = {
-  isFavorite: boolean
+  index: number
   title: string
   body: string
 }
 
 export const MainContexts = createContext<MainContextInterface>({
   notesData: [],
+  favoriteData:[],
+  archiveData :[],
   loading: false,
   snackbarText: '',
   showSnackbar: false,
@@ -54,17 +58,19 @@ export const MainContexts = createContext<MainContextInterface>({
   setIsNeedRefreshAll: null,
   setIsNeedRefreshFavorite: null,
   setIsNeedRefreshArchive: null,
-  getData: null,
-  onEdit: null,
-  onSave: null,
-  onDelete: null,
-  setAsFavorite: null,
+  getData: async()  => {},
+  onEdit:  async() => {},
+  onSave:  async() => {},
+  onDelete: async() => {},
+  setAsFavorite: async() => {},
 })
 
 export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
   children,
 }) => {
   const [notesData, setData] = useState<NoteData[]>([])
+  const [favoriteData, setFavoriteData] = useState<NoteData[]>([])
+  const [archiveData, setArchiveData] = useState<NoteData[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [snackbarText, setSnackbarText] = useState<string>('')
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false)
@@ -81,17 +87,34 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
   const removeAll = async () => {
     await AsyncStorage.removeItem('data')
   }
-
+//GET DATA
   const getData = async () => {
     try {
       setLoading(true)
-      const data = await AsyncStorage.getItem('data')
-      setData(JSON.parse(data))
+      const storedData = await AsyncStorage.getItem('data')
+      const data  =JSON.parse(storedData)
+
+      const filteredData = data?.length !=0 ?
+      data.filter(item => !item.is_archived) :[]
+      setData(filteredData)
+
+      //filter favorite data
+      const filteredFavoriteData = data?.length !=0 ?
+      data.filter(item => !item.is_archived && item.is_favorite) :[]
+      setFavoriteData(filteredFavoriteData)
+      //filter archived data
+      setArchiveData(filteredFavoriteData)
+      const filteredArchiveData = data?.length !=0 ?
+      data.filter(item => item.is_archived ) :[]
+      setArchiveData(filteredArchiveData)
+
       setLoading(false)
     } catch (error) {
       console.log(error)
     }
   }
+
+  //SET AS FAVORITE
   const setAsFavorite = async (index: favoriteFields) => {
     setIsNeedRefreshFavorite(true)
     setIsNeedRefreshAll(true)
@@ -101,6 +124,7 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
     getData()
   }
 
+  //SAVE DATA
   const onSave = async ({ isFavorite, title, body }: saveFields) => {
     try {
       const data = {
@@ -136,8 +160,8 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
       setShowSnackbar(true)
     }
   }
-
-  const onEdit = async ({ isFavorite, title, body }: editFields) => {
+//EDIT DATA
+  const onEdit = async ({ title, body, index }: editFields) => {
     try {
       const arr = notesData
       arr[index] = {
@@ -163,7 +187,7 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
       setShowSnackbar(true)
     }
   }
-
+//DELETE DATA
   const onDelete = async (index: deleteFields) => {
     try {
       const arr = notesData
@@ -188,6 +212,8 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
     <MainContexts.Provider
       value={{
         notesData,
+        favoriteData,
+        archiveData,
         loading,
         getData,
         setAsFavorite,
@@ -212,6 +238,8 @@ export const MainProvider: React.FC<React.PropsWithChildren<unknown>> = ({
 export const useMain = () => {
   const {
     notesData,
+    favoriteData,
+    archiveData,
     loading,
     getData,
     setAsFavorite,
@@ -230,6 +258,8 @@ export const useMain = () => {
 
   return {
     notesData,
+    favoriteData,
+    archiveData,
     loading,
     getData,
     setAsFavorite,
